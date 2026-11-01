@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { authClient } from '@/lib/auth-client';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 interface BookingModalProps {
   id: string;
@@ -37,7 +37,7 @@ export default function BookingModal({
 
   const totalPrice = hourlyRate * Number(duration);
   const { data: session } = authClient.useSession();
-
+  const router = useRouter();
   const handleBooking = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -64,11 +64,16 @@ export default function BookingModal({
           body: JSON.stringify(bookingData),
         },
       );
+
       const data = await res.json();
-      if (data) {
-        toast.success('Booking successful!');
-        redirect('/my-bookings');
+
+      if (!res.ok) {
+        toast.error(data.message);
+        return;
       }
+
+      toast.success('Booking successful!');
+      router.push('/my-bookings');
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
     }
@@ -77,7 +82,14 @@ export default function BookingModal({
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className="w-full bg-amber-500 text-white hover:bg-amber-600">
+        <Button
+          onClick={() => {
+            if (!session?.user) {
+              router.push('/sign-in');
+            }
+          }}
+          className="w-full bg-amber-500 text-white hover:bg-amber-600"
+        >
           Book Workspace Now
         </Button>
       </DialogTrigger>

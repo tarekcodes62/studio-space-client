@@ -39,7 +39,7 @@ const steps = [
 
 export default function HowBookingWorks() {
   return (
-    <section id="#how-it-works" className="bg-muted/30 py-20">
+    <section id="how-it-works" className="bg-muted/30 py-20">
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="mx-auto mb-14 max-w-2xl text-center">

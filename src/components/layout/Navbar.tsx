@@ -10,7 +10,7 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Explore Studios', href: '/studios' },
   { name: 'How It Works', href: '#how-it-works' },
-  { name: 'About Us', href: '#about-us' },
+  { name: 'About Us', href: '#about' },
 ];
 interface NavbarProps {
   authMenu: React.ReactNode;
