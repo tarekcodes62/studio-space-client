@@ -85,7 +85,9 @@ export default function BookingModal({
         <Button
           onClick={() => {
             if (!session?.user) {
-              router.push('/sign-in');
+              router.push(
+                `/sign-in?callbackURL=${encodeURIComponent(window.location.pathname)}`,
+              );
             }
           }}
           className="w-full bg-amber-500 text-white hover:bg-amber-600"

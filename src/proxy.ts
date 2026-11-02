@@ -1,17 +1,24 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { headers } from 'next/headers';
 import { auth } from './lib/auth';
 
-// This function can be marked `async` if using `await` inside
 export async function proxy(request: NextRequest) {
   const session = await auth.api.getSession({
-    headers: await headers(),
+    headers: request.headers,
   });
-  const user = session?.user;
-  if (!user) {
-    return NextResponse.redirect(new URL('/sign-in', request.url));
+
+  if (!session?.user) {
+    const signInUrl = new URL('/sign-in', request.url);
+
+    signInUrl.searchParams.set(
+      'callbackURL',
+      request.nextUrl.pathname + request.nextUrl.search,
+    );
+
+    return NextResponse.redirect(signInUrl);
   }
+
+  return NextResponse.next();
 }
 
 export const config = {
@@ -19,6 +26,6 @@ export const config = {
     '/add-studio',
     '/my-listings',
     '/my-bookings',
-    '/studios/edit/:path',
+    '/studios/edit/:path*',
   ],
 };

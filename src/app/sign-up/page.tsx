@@ -71,6 +71,7 @@ export default function RegisterPage() {
 
       toast.success('Registration successful!');
       router.push('/');
+      router.refresh();
     } catch {
       toast.error('Something went wrong. Please try again.');
     } finally {
