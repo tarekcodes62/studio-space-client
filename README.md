@@ -1,36 +1,194 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StudioSpace - Creative Studio Marketplace
 
-## Getting Started
+StudioSpace is a creative studio marketplace where photographers, filmmakers,
+podcasters, musicians, and other creators can discover and book professional
+creative spaces. Studio owners can also list their spaces and manage bookings
+through a user-friendly dashboard.
 
-First, run the development server:
+## 🚀 Live Website
+
+[Visit StudioSpace](https://studio-space-platform.vercel.app/)
+
+## ✨ Features
+
+- Fully responsive design for mobile, tablet, and desktop.
+- User authentication with Better Auth.
+- Google social login.
+- JWT-based authentication and token verification.
+- Browse studios by category.
+- Explore detailed studio information.
+- Book studios by selecting date, start time, and duration.
+- User dashboard with booking statistics.
+- Add new studio listings.
+- Edit and manage studio listings.
+- View personal studio bookings.
+- Manage booking statuses.
+- Protected routes for authenticated users.
+- Loading skeletons for better user experience.
+- Light and dark theme support.
+- Toast notifications for success and error messages.
+- Dynamic studio details pages.
+- REST API integration.
+
+## 🛠️ Technologies Used
+
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Shadcn UI
+- Lucide React
+- Sonner
+- Swiper.js
+
+### Authentication & Security
+
+- Better Auth
+- JWT (JSON Web Token)
+- Jose
+
+### Backend & Database
+
+- Node.js
+- Express.js
+- MongoDB
+- REST API
+
+### Deployment
+
+- Vercel
+
+## 📦 Dependencies
+
+- next
+- react
+- typescript
+- better-auth
+- jose
+- tailwindcss
+- lucide-react
+- sonner
+- swiper
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+```
+
+### 2. Navigate to the Project Directory
+
+```bash
+cd studiospace-client
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+### 4. Setup Environment Variables
+
+Create a `.env.local` file in the root directory.
+
+```env
+NEXT_PUBLIC_API_URL=your_backend_api_url
+
+BETTER_AUTH_SECRET=your_auth_secret
+
+BETTER_AUTH_URL=http://localhost:3000
+```
+
+Add any additional environment variables required by your Google authentication
+configuration.
+
+### 5. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+src/
+├── app/
+│   ├── dashboard/
+│   ├── studios/
+│   │   ├── [slug]/
+│   │   ├── edit/
+│   │   └── page.tsx
+│   ├── my-bookings/
+│   ├── my-listings/
+│   ├── add-studio/
+│   ├── sign-in/
+│   ├── sign-up/
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   ├── ui/
+│   ├── shared/
+│   └── ...
+│
+├── lib/
+│   ├── auth.ts
+│   └── auth-client.ts
+│
+└── proxy.ts
+```
 
-## Learn More
+## 📄 Main Routes
 
-To learn more about Next.js, take a look at the following resources:
+| Page            | Route             |
+| --------------- | ----------------- |
+| Home            | `/`               |
+| Explore Studios | `/studios`        |
+| Studio Details  | `/studios/[slug]` |
+| Add Studio      | `/add-studio`     |
+| Dashboard       | `/dashboard`      |
+| My Bookings     | `/my-bookings`    |
+| My Listings     | `/my-listings`    |
+| Sign In         | `/sign-in`        |
+| Sign Up         | `/sign-up`        |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔐 Authentication & Security
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+StudioSpace uses Better Auth for user authentication and Jose for JWT-related
+token handling.
 
-## Deploy on Vercel
+- Email and password authentication.
+- Google social authentication.
+- Secure session management.
+- JWT generation and verification.
+- Protected routes.
+- Authenticated API requests.
+- User-specific booking and listing management.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎯 Project Goal
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The goal of StudioSpace is to connect creative professionals with studio owners
+through a modern and user-friendly marketplace.
+
+It makes discovering, booking, and managing creative spaces easier and more
+convenient.
+
+---
+
+## 👨‍💻 Developer
+
+**Tarek Rahman**
+
+- GitHub: [tarekcodes62](https://github.com/tarekcodes62)
+- LinkedIn: [Tarek Rahman](https://www.linkedin.com/in/tarek-rahman1/)
+
+---
+
+**Developed with ❤️ by Tarek Rahman**
