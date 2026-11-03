@@ -3,7 +3,7 @@ import { Camera, Home } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
+    <div className="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center p-5">
       {/* Studio Illustration */}
       <div className="relative mb-8 flex h-52 w-52 items-center justify-center rounded-full bg-primary/10">
         <div className="flex h-32 w-32 items-center justify-center rounded-3xl bg-primary/15">
