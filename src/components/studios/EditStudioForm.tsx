@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
+import { getTokenFromClient } from '@/lib/getTokenFromClient';
 
 interface Studio {
   _id: string;
@@ -129,6 +130,8 @@ const EditStudioForm = ({ studio }: Props) => {
       },
     };
 
+    const token = await getTokenFromClient(); // Assuming you have a function to get the token from the client
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/studios/${studio._id}?email=${encodeURIComponent(
@@ -138,6 +141,7 @@ const EditStudioForm = ({ studio }: Props) => {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(studioData),
         },

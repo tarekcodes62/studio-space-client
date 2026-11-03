@@ -51,7 +51,9 @@ export default function StudioSpecifications({
 
               <div className="min-w-0">
                 <p className="text-sm text-muted-foreground">{item.label}</p>
-                <p className="mt-1 break-words font-semibold">{item.value}</p>
+                <p className="mt-1 wrap-break-word font-semibold">
+                  {item.value}
+                </p>
               </div>
             </div>
           );

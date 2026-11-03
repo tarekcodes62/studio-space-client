@@ -60,7 +60,7 @@ export default function HeroSlider() {
           {slides.map(slide => (
             <SwiperSlide key={slide.id}>
               <div
-                className="relative flex min-h-[480px] items-center bg-cover bg-center px-6 py-16 sm:min-h-[550px] sm:px-12 lg:px-20"
+                className="relative flex min-h-120 items-center bg-cover bg-center px-6 py-16 sm:min-h-137.5 sm:px-12 lg:px-20"
                 style={{
                   backgroundImage: `url(${slide.image})`,
                 }}
@@ -93,7 +93,7 @@ export default function HeroSlider() {
                     </Link>
 
                     <Link
-                      href="/studios"
+                      href="/add-studio"
                       className="inline-flex items-center gap-2 rounded-lg border border-white/70 px-6 py-3 font-semibold text-white transition hover:bg-white hover:text-black"
                     >
                       Host Your Space

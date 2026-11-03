@@ -18,6 +18,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { getTokenFromClient } from '@/lib/getTokenFromClient';
 
 interface Props {
   booking: Booking;
@@ -29,6 +30,7 @@ const CancelBookingDialog = ({ booking }: Props) => {
   const [loading, setLoading] = useState(false);
 
   const handleCancel = async () => {
+    const token = await getTokenFromClient();
     try {
       setLoading(true);
 
@@ -36,6 +38,9 @@ const CancelBookingDialog = ({ booking }: Props) => {
         `${process.env.NEXT_PUBLIC_API_URL}/my-bookings/${booking._id}/cancel`,
         {
           method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
       );
 

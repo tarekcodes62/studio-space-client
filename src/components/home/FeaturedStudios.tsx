@@ -24,7 +24,7 @@ export default async function FeaturedStudios() {
 
           <Link
             href="/studios"
-            className="hidden items-center gap-2 font-medium text-primary sm:flex"
+            className="hidden items-center gap-2 font-medium  sm:flex text-amber-400 hover:underline"
           >
             View All Studios <ArrowRight size={18} />
           </Link>

@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Pencil, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { getTokenFromClient } from '@/lib/getTokenFromClient';
 
 interface StudioActionsProps {
   studioId: string;
@@ -26,6 +27,7 @@ const StudioActions = ({ studioId }: StudioActionsProps) => {
   const router = useRouter();
 
   const handleDelete = async () => {
+    const token = await getTokenFromClient(); // Assuming you have a function to get the token from the client
     try {
       setLoading(true);
 
@@ -33,6 +35,9 @@ const StudioActions = ({ studioId }: StudioActionsProps) => {
         `${process.env.NEXT_PUBLIC_API_URL}/studios/${studioId}`,
         {
           method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
       );
 

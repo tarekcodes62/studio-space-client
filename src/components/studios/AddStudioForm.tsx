@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
+import { getTokenFromClient } from '@/lib/getTokenFromClient';
 
 interface Props {
   user: {
@@ -113,12 +114,14 @@ const AddStudioForm = ({ user }: Props) => {
       rating: 4.7,
       totalReviews: 89,
     };
+    const token = await getTokenFromClient(); 
 
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/add-studio`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(studioData),
       });

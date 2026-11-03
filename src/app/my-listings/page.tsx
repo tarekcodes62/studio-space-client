@@ -1,5 +1,6 @@
 import StudioActions from '@/components/listings/StudioActions';
 import { auth } from '@/lib/auth';
+import { getTokenFromServer } from '@/lib/getTokenFromServer';
 import { Studio } from '@/types/studio';
 import { Camera, MapPin, Plus } from 'lucide-react';
 import { headers } from 'next/headers';
@@ -11,7 +12,7 @@ const ListingsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-
+  const token = await getTokenFromServer();
   if (!session) {
     redirect('/sign-in');
   }
@@ -22,6 +23,9 @@ const ListingsPage = async () => {
     )}`,
     {
       cache: 'no-store',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
   );
 

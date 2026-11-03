@@ -15,6 +15,7 @@ import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { getTokenFromClient } from '@/lib/getTokenFromClient';
 
 interface BookingModalProps {
   id: string;
@@ -53,6 +54,7 @@ export default function BookingModal({
       status: 'Pending',
       createdAt: new Date(),
     };
+    const token = await getTokenFromClient();
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/my-bookings`,
@@ -60,6 +62,7 @@ export default function BookingModal({
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(bookingData),
         },

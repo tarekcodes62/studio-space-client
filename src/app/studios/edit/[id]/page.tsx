@@ -1,5 +1,6 @@
 import EditStudioForm from '@/components/studios/EditStudioForm';
 import { auth } from '@/lib/auth';
+import { getTokenFromServer } from '@/lib/getTokenFromServer';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
@@ -9,6 +10,7 @@ const EditStudioPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
+  const token = await getTokenFromServer();
 
   // Get logged-in user
   const session = await auth.api.getSession({
@@ -25,6 +27,9 @@ const EditStudioPage = async ({
     )}`,
     {
       cache: 'no-store',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
   );
 

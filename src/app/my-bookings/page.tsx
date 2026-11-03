@@ -1,16 +1,21 @@
 import MyBookingsList from '@/components/bookings/MyBookingsList';
 import { auth } from '@/lib/auth';
+import { getTokenFromServer } from '@/lib/getTokenFromServer';
 import { headers } from 'next/headers';
 
 const BookingsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+  const token = await getTokenFromServer();
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/my-bookings/${session?.user.id}`,
     {
       cache: 'no-store',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
   );
 

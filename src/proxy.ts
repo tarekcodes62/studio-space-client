@@ -23,6 +23,7 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/dashboard',
     '/add-studio',
     '/my-listings',
     '/my-bookings',
