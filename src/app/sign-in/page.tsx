@@ -73,6 +73,8 @@ function LoginForm() {
         provider: 'google',
         callbackURL,
       });
+      router.replace(callbackURL);
+      router.refresh();
     } catch {
       toast.error('Google login failed. Please try again.');
       setGoogleLoading(false);

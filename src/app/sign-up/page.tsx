@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 
 export default function RegisterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
@@ -43,6 +44,17 @@ export default function RegisterPage() {
     return '';
   };
 
+  // Redirect to desired route or Home
+  const callbackURL = (() => {
+    const next = searchParams.get('callbackURL');
+
+    if (next?.startsWith('/') && !next.startsWith('//')) {
+      return next;
+    }
+
+    return '/';
+  })();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -62,6 +74,7 @@ export default function RegisterPage() {
         email: formData.email,
         password: formData.password,
         image: formData.image,
+        callbackURL,
       });
 
       if (error) {
@@ -70,7 +83,7 @@ export default function RegisterPage() {
       }
 
       toast.success('Registration successful!');
-      router.push('/');
+      router.replace(callbackURL);
       router.refresh();
     } catch {
       toast.error('Something went wrong. Please try again.');
@@ -85,8 +98,10 @@ export default function RegisterPage() {
 
       await signIn.social({
         provider: 'google',
-        callbackURL: '/',
+        callbackURL,
       });
+      router.replace(callbackURL);
+      router.refresh();
     } catch {
       toast.error('Google login failed');
       setGoogleLoading(false);
